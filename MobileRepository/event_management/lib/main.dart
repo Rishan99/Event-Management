@@ -1,4 +1,6 @@
 import 'package:event_management/core/theme/themes.dart';
+import 'package:event_management/services/provider/city_provider.dart';
+import 'package:event_management/services/weather/weather_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -31,17 +33,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => TruckProviderService(),
+      create: (context) => CityProvider(locator<WeatherService>()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         builder: (newContext, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.light,
+            scaffoldMessengerKey: scaffoldMessengerKey,
             theme: Themes().theme(),
             initialRoute: Routes.splashPage,
+            builder: (_context, child) {
+              locator<HttpService>().init(_context);
+              return child!;
+            },
             onGenerateRoute: generateRoutes,
-            title: 'Event management',
+            title: 'Festivalika',
           );
         },
       ),

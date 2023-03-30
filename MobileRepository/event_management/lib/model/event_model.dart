@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'ticket_type.dart';
+
 class EventModel {
   final int id;
   final String name;
@@ -8,7 +10,8 @@ class EventModel {
   final String? description;
   final String startDate;
   final String? endDate;
-  final int ticketType;
+  final TicketType ticketType;
+  final int ticketTypeId;
   final double ticketPrice;
   EventModel({
     required this.id,
@@ -19,46 +22,9 @@ class EventModel {
     required this.startDate,
     this.endDate,
     required this.ticketType,
+    required this.ticketTypeId,
     required this.ticketPrice,
   });
-
-  EventModel copyWith({
-    int? id,
-    String? name,
-    String? city,
-    String? address,
-    String? description,
-    String? startDate,
-    String? endDate,
-    int? ticketType,
-    double? ticketPrice,
-  }) {
-    return EventModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      city: city ?? this.city,
-      address: address ?? this.address,
-      description: description ?? this.description,
-      startDate: startDate ?? this.startDate,
-      endDate: endDate ?? this.endDate,
-      ticketType: ticketType ?? this.ticketType,
-      ticketPrice: ticketPrice ?? this.ticketPrice,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'city': city,
-      'address': address,
-      'description': description,
-      'startDate': startDate,
-      'endDate': endDate,
-      'ticketType': ticketType,
-      'ticketPrice': ticketPrice,
-    };
-  }
 
   factory EventModel.fromMap(Map<String, dynamic> map) {
     return EventModel(
@@ -69,18 +35,17 @@ class EventModel {
       description: map['description'],
       startDate: map['startDate'] ?? '',
       endDate: map['endDate'],
-      ticketType: map['ticketType']?.toInt() ?? 0,
+      ticketType: TicketType.fromMap(map['ticketType']),
+      ticketTypeId: map['ticketTypeId']?.toInt() ?? 0,
       ticketPrice: map['ticketPrice']?.toDouble() ?? 0.0,
     );
   }
-
-  String toJson() => json.encode(toMap());
 
   factory EventModel.fromJson(String source) => EventModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'EventModel(id: $id, name: $name, city: $city, address: $address, description: $description, startDate: $startDate, endDate: $endDate, ticketType: $ticketType, ticketPrice: $ticketPrice)';
+    return 'EventModel(id: $id, name: $name, city: $city, address: $address, description: $description, startDate: $startDate, endDate: $endDate, ticketType: $ticketType, ticketTypeId: $ticketTypeId, ticketPrice: $ticketPrice)';
   }
 
   @override
@@ -96,11 +61,64 @@ class EventModel {
         other.startDate == startDate &&
         other.endDate == endDate &&
         other.ticketType == ticketType &&
+        other.ticketTypeId == ticketTypeId &&
         other.ticketPrice == ticketPrice;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ city.hashCode ^ address.hashCode ^ description.hashCode ^ startDate.hashCode ^ endDate.hashCode ^ ticketType.hashCode ^ ticketPrice.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        city.hashCode ^
+        address.hashCode ^
+        description.hashCode ^
+        startDate.hashCode ^
+        endDate.hashCode ^
+        ticketType.hashCode ^
+        ticketTypeId.hashCode ^
+        ticketPrice.hashCode;
   }
+
+  EventModel copyWith({
+    int? id,
+    String? name,
+    String? city,
+    String? address,
+    String? description,
+    String? startDate,
+    String? endDate,
+    TicketType? ticketType,
+    int? ticketTypeId,
+    double? ticketPrice,
+  }) {
+    return EventModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      city: city ?? this.city,
+      address: address ?? this.address,
+      description: description ?? this.description,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
+      ticketType: ticketType ?? this.ticketType,
+      ticketTypeId: ticketTypeId ?? this.ticketTypeId,
+      ticketPrice: ticketPrice ?? this.ticketPrice,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'city': city,
+      'address': address,
+      'description': description,
+      'startDate': startDate,
+      'endDate': endDate,
+      'ticketType': ticketType.toMap(),
+      'ticketTypeId': ticketTypeId,
+      'ticketPrice': ticketPrice,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
 }

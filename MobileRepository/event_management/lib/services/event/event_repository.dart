@@ -1,4 +1,4 @@
 abstract class EventRepository {
-  Future<dynamic> getEvents(String? city);
+  Future<List<dynamic>> getEvents(String? city);
   Future<dynamic> getEventDetails(int id);
 }

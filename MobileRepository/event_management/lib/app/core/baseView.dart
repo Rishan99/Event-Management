@@ -1,6 +1,7 @@
-import 'package:event_management/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:event_management/dependency_injection.dart';
 
 import 'baseViewModel.dart';
 
@@ -38,7 +39,6 @@ class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
 
   @override
   void dispose() async {
-    model.disMountWidget();
     super.dispose();
     if (widget.onDispose != null) {
       widget.onDispose!(model);

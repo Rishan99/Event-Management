@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:event_management/core/api_url/api_url.dart';
+import 'package:event_management/data/core/error_handler.dart';
 import 'package:event_management/services/weather/weather_repository.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
@@ -11,13 +12,19 @@ class WeatherRepositoryImpl implements WeatherRepository {
 
   @override
   Future<List<dynamic>> getWeather(String cityName) async {
-    final response = await _dio.get(
-      ApiUrl.weaterApiBaseUrl + ApiUrl.hourlyCityUrl,
-      queryParameters: {
-        "q": cityName,
-        "appid": apiKey,
-      },
-    );
-    return response.data as List<dynamic>;
+    try {
+      return [];
+      final response = await _dio.get(
+        ApiUrl.weaterApiBaseUrl + ApiUrl.hourlyCityUrl,
+        queryParameters: {
+          "q": cityName,
+          "appid": apiKey,
+        },
+      );
+      return response.data as List<dynamic>;
+    } catch (e) {
+      ErrorHandler.handleDioError(e);
+      rethrow;
+    }
   }
 }

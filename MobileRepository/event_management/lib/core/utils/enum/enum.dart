@@ -1,3 +1,5 @@
 enum ViewState { idle, busy, error }
 
-enum AuthenticationViewState { login, signup }
+enum AuthenticationState { login, register }
+
+enum UserAuthenticationState { expired, loggedIn, notLoggedIn }

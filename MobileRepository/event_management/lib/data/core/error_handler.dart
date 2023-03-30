@@ -15,7 +15,7 @@ class ErrorHandler {
           throw Exception('Response Timeout');
         case DioErrorType.badResponse:
           if (error.response!.statusCode == 401) {
-            throw SessionExpiredException();
+            throw SessionExpiredException(message: "Session has expired");
           } else {
             throw error.response!.data;
           }
@@ -23,7 +23,7 @@ class ErrorHandler {
           throw Exception('Connection was canceled');
         case DioErrorType.connectionError:
           if ((error.message ?? '').toLowerCase().contains('socketexception')) {
-            throw NoInternetException();
+            throw NoInternetException(message: "No internet connection or server offline");
           } else {
             throw Exception(error.message.toString());
           }

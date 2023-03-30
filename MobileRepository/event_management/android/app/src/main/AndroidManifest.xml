@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="np.com.rishanshrestha.event_management">
    <application
-        android:label="event_management"
+        android:label="Festivalika"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

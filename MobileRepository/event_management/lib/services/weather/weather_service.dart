@@ -1,3 +1,5 @@
+import 'package:event_management/core/utils/exception/exception.dart';
+
 import 'weather_repository.dart';
 
 class WeatherService {
@@ -5,7 +7,13 @@ class WeatherService {
   WeatherService(this.weatherRepository);
 
   Future<List<dynamic>> getFiveDaysWeatherForeCast(String cityName) async {
-    final List<dynamic> data = await weatherRepository.getWeather(cityName);
-    return [];
+    try {
+      final List<dynamic> data = await weatherRepository.getWeather(cityName);
+      return [];
+    } on SessionExpiredException catch (e) {
+      throw SessionExpiredException(message: "Invalid Api key, Please try again");
+    } catch (e) {
+      rethrow;
+    }
   }
 }

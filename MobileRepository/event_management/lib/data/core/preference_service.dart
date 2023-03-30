@@ -22,7 +22,7 @@ class PreferenceService {
     return _sharedPreferences!.getString("accessToken") ?? '';
   }
 
-  set userType(String value) {
+  set userName(String value) {
     _sharedPreferences!.setString("userName", value);
   }
 

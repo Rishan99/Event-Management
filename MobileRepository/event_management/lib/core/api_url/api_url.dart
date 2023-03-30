@@ -11,7 +11,7 @@ class ApiUrl {
 
   //Auth
   static String login = "auth/login";
-  static String signup = "auth/signup";
+  static String register = "auth/register";
   //User
   static String profileDetail = "auth/me";
   //Event

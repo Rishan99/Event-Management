@@ -10,6 +10,8 @@ List<EventModel> events = List.generate(
   10,
   (i) => EventModel(
     id: i,
+    coverImage: "https://fastly.picsum.photos/id/617/200/200.jpg?hmac=hA4FoiLXjwqHcRxZZSlEI_ruilvP8o_m7FsJ-JD4t4I",
+    endDate: DateTime.now().toIso8601String(),
     name: "name$i",
     city: "city$i",
     address: "address$i",
@@ -23,6 +25,13 @@ List<EventModel> events = List.generate(
 
 EventDetailModel eventModel(int i) => EventDetailModel(
       booking: null,
+      coverImage: null,
+      endDate: DateTime.now().toIso8601String(),
+      images: [
+        "https://fastly.picsum.photos/id/617/200/200.jpg?hmac=hA4FoiLXjwqHcRxZZSlEI_ruilvP8o_m7FsJ-JD4t4I",
+        "https://fastly.picsum.photos/id/966/200/300.jpg?hmac=vBALR2x0cV-keVNLecwjd8ZluSHv17AHDvpiYjBqar0"
+      ],
+      description: 'dsdsaads ',
       id: i,
       name: "name$i",
       city: "city$i",

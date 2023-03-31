@@ -71,11 +71,12 @@ class EventListView extends StatelessWidget {
                       message: "No Events Found",
                     );
                   }
-                  return GridView.builder(
+                  return ListView.separated(
+                    separatorBuilder: (a, b) => formSeperatorBox(),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: model.eventList.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
+                    // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
                     itemBuilder: (x, i) {
                       final currentData = model.eventList[i];
                       return EventGridWidget(eventModel: currentData);

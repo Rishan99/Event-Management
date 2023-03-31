@@ -5,6 +5,7 @@ import 'ticket_type.dart';
 class EventModel {
   final int id;
   final String name;
+  final String? coverImage;
   final String city;
   final String address;
   final String? description;
@@ -15,6 +16,7 @@ class EventModel {
   final double ticketPrice;
   EventModel({
     required this.id,
+    required this.coverImage,
     required this.name,
     required this.city,
     required this.address,
@@ -29,6 +31,7 @@ class EventModel {
   factory EventModel.fromMap(Map<String, dynamic> map) {
     return EventModel(
       id: map['id']?.toInt() ?? 0,
+      coverImage: map['coverImage'],
       name: map['name'] ?? '',
       city: map['city'] ?? '',
       address: map['address'] ?? '',
@@ -87,6 +90,7 @@ class EventModel {
     String? description,
     String? startDate,
     String? endDate,
+    String? coverImage,
     TicketType? ticketType,
     int? ticketTypeId,
     double? ticketPrice,
@@ -94,6 +98,7 @@ class EventModel {
     return EventModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      coverImage: coverImage ?? this.coverImage,
       city: city ?? this.city,
       address: address ?? this.address,
       description: description ?? this.description,
@@ -111,6 +116,7 @@ class EventModel {
       'name': name,
       'city': city,
       'address': address,
+      'coverImage': coverImage,
       'description': description,
       'startDate': startDate,
       'endDate': endDate,

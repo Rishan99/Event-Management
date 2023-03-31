@@ -4,8 +4,10 @@ import 'package:event_management/model/event_model.dart';
 
 class EventDetailModel extends EventModel {
   final dynamic booking;
+  final List<String> images;
   EventDetailModel({
     required this.booking,
+    required this.images,
     required super.id,
     required super.name,
     required super.city,
@@ -15,13 +17,16 @@ class EventDetailModel extends EventModel {
     super.endDate,
     required super.ticketType,
     required super.ticketTypeId,
+    required super.coverImage,
     required super.ticketPrice,
   });
 
   factory EventDetailModel.fromMap(Map<String, dynamic> map) {
     final eventModel = EventModel.fromMap(map);
     return EventDetailModel(
+      images: map['images'] ?? [],
       booking: map['booking'] ?? null,
+      coverImage: map['coverImage'],
       address: eventModel.address,
       city: eventModel.address,
       id: eventModel.id,
@@ -42,6 +47,7 @@ class EventDetailModel extends EventModel {
     final data = super.toMap();
     data.addAll({
       'booking': booking,
+      'images': images,
     });
     return data;
   }

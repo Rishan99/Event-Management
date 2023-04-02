@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+.bg {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 80%), rgba(0, 0, 0, 60%)),
+    url("./../boot/assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.q-layout__shadow:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: none;
+}
+.q-toolbar {
+  position: relative;
+  padding: 0 27px;
+  min-height: 60px;
+  width: 100%;
+}
+.q-toolbar .q-btn {
+  padding: 8px 10px;
+  font-size: 12px !important;
+}
+/*  .new-square {
+    padding: 8px 10px;
+    font-size: 12px !important;
+  }*/
+/* .q-toolbar__title:first-child {
+  font-size: 24px;
+} */
+.q-item.q-router-link--active,
+.q-item--active {
+  color: #fff;
+  background-color: #6a994e;
+}
+/*. {
+  height: 50px;
+  padding: 10px 25px 0 20px;
+}
+.q-card-tittle {
+  padding: 0 30px;
+}*/
+.q-dialog .q-card {
+  width: 600px;
+  max-width: 80vw;
+  margin-top: 24px;
+}
+.form-card {
+  padding: 5px 30px 15px;
+}
+.q-item__label,
+.q-item__section {
+  font-size: 14px;
+}
+.q-list--dense > .q-item,
+.q-item--dense {
+  min-height: 36px;
+  padding: 8px 16px;
+}
+.q-table--horizontal-separator thead th {
+  font-size: 16px;
+  font-weight: 500;
+  color: #17832e;
+}
+.q-table__middle scroll {
+  margin: 0 30px;
+}
+.q-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  padding: 15px 25px 0;
+}
+.q-table tbody td {
+  height: 32px !important;
+}
+
+.q-card {
+  background-color: #f5f5f5;
+}
+/* .q-card__section--vert {
+ 
+} */
+.q-table__card {
+  color: #000;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: none;
+  /* box-shadow: 0 1px 5px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%); */
+  margin: 0;
+}
+.login {
+  margin: 100px 0 0;
+  padding: 20px 20px;
+  width:500px;
+  height:500px;
+  box-shadow: 6px 1px 90px 40px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 6px 1px 90px 40px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 6px 1px 90px 40px rgba(0, 0, 0, 0.3);
+}
+.q-tab-panel p {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+/*record*/
+.q-table__bottom .q-table__control {
+  min-height: 40px;
+}
+
+.noLeftSpace {
+  padding: 0 !important;
+}

@@ -17,6 +17,5 @@ Made with Flutter for Mobile Application, Asp.Net for Backend and Vue Js with Qu
 ### Mobile Credentials:
 	Username: temp@gmail.com
 	Passowrd: Temp@123#
-	
 	PS: You can create your own account and register yourself
 

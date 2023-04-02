@@ -6,9 +6,9 @@ A Event Management Application, that can search nearby exciting events and book 
 
 Made with Flutter for Mobile Application, Asp.Net for Backend and Vue Js with Quasar Framework for Frontend
 
-	- [App Download Link](https://drive.google.com/file/d/1LDAuWdGMLqGhadhA5vDGNzH09syOIIkn/view?usp=share_link)
+   [App Download Link](https://drive.google.com/file/d/1LDAuWdGMLqGhadhA5vDGNzH09syOIIkn/view?usp=share_link)
 ### For Live Access
-	- [Admin Panel](http://festivalika.rishanshrestha.com.np/)
+   [Admin Panel](http://festivalika.rishanshrestha.com.np/)
 
 ### Admin Credentials:
 	Username:admin

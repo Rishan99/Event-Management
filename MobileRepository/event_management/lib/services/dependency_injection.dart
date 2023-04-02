@@ -7,7 +7,6 @@ import 'service.dart';
 
 setupService() {
   locator.registerSingleton<AuthService>(AuthService(locator<AuthRepository>()));
-  locator.registerSingleton<UserService>(UserService(locator<UserRepository>()));
   locator.registerSingleton<WeatherService>(WeatherService(locator<WeatherRepository>()));
   locator.registerSingleton<EventService>(EventService(locator<EventRepository>()));
 }

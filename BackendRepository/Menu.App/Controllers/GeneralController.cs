@@ -14,6 +14,7 @@ namespace Menu.App.Controllers
 {
     [Route("api/general")]
     [ApiController]
+    [Authorize]
     public class GeneralController : ControllerBase
     {
         private readonly IGeneralRepository _generalRepository;

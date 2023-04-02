@@ -43,10 +43,6 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: scaffoldMessengerKey,
             theme: Themes().theme(),
             initialRoute: Routes.splashPage,
-            builder: (_context, child) {
-              locator<HttpService>().init(_context);
-              return child!;
-            },
             onGenerateRoute: generateRoutes,
             title: 'Festivalika',
           );

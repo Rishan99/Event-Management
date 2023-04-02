@@ -14,11 +14,13 @@ using Microsoft.AspNetCore.Identity;
 using Menu.Data.AuthModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Menu.App.Controllers
 {
     [Route("api/event")]
     [ApiController]
+    [Authorize]
     public class EventController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -215,7 +217,7 @@ namespace Menu.App.Controllers
                     eventSelectDto.ticketStatusId = userTicketPayment.TicketStatusId;
                 }
                 bool hasDateForBookingPassed = (currentDateTime.CompareTo(eventDetail.StartDate) >= 0);
-                eventSelectDto.allowBooking = (hasAlreadyBought || hasDateForBookingPassed);
+                eventSelectDto.allowBooking = !(hasAlreadyBought || hasDateForBookingPassed);
                 var firstImage = eventSelectDto.EventImages.FirstOrDefault()?.ImageName;
                 if (!string.IsNullOrEmpty(firstImage))
                 {

@@ -9,11 +9,12 @@ using Menu.Data.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 namespace Menu.App.Controllers
 {
     [Route("api/ticket")]
     [ApiController]
+    [Authorize]
     public class TicketPaymentController : ControllerBase
     {
         private readonly ITicketPaymentRepository _ticketPaymentRepository;

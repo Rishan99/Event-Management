@@ -3,7 +3,7 @@
 class ApiUrl {
   //Private Constructor to restrict creating instance of class
   ApiUrl._();
-  static String baseUrl = 'https://192.168.1.84:44396/api/';
+  static String baseUrl = 'http://festivalika.rishanshrestha.com.np/api/';
   static String weatherApiBaseUrl = "https://api.openweathermap.org/data/2.5/";
   static String weatherImageBaseUrl = "https://openweathermap.org/img/wn/";
 

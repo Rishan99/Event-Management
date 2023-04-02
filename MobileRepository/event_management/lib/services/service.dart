@@ -1,5 +1,3 @@
-export 'user/user_repository.dart';
-export 'user/user_service.dart';
 //
 export 'auth/auth_repository.dart';
 export 'auth/auth_service.dart';

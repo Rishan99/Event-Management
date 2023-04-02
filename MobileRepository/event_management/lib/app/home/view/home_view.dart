@@ -10,6 +10,7 @@ import 'package:event_management/app/widgets/no_result_widget.dart';
 import 'package:event_management/core/route/routes.dart';
 import 'package:event_management/core/utils/enum/enum.dart';
 import 'package:event_management/core/utils/ui_helper.dart';
+import 'package:event_management/data/core/http_service.dart';
 import 'package:event_management/data/data.dart';
 import 'package:event_management/services/provider/city_provider.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    locator<HttpService>().init(context);
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(

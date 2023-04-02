@@ -45,7 +45,7 @@ class _CityViewState extends State<CityView> {
                 formSeperatorBox(),
                 TextFormField(
                   controller: _cityNameController,
-                  decoration: const InputDecoration(hintText: "Enter city name to search"),
+                  decoration: const InputDecoration(hintText: "Enter city or address to search"),
                   validator: Validators.cityNameValidator,
                 ),
                 formSeperatorBox(),

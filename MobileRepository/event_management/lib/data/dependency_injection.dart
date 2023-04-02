@@ -21,7 +21,6 @@ Future<void> setupData() async {
   locator.registerSingleton<HttpService>(HttpService(preferenceService));
   final httpService = locator.get<HttpService>();
   locator.registerSingleton<AuthRepository>(AuthRepositoryImpl(httpService));
-  locator.registerSingleton<UserRepository>(UserRepositoryImpl(httpService));
   locator.registerSingleton<EventRepository>(EventRepositoryImpl(httpService));
   locator.registerSingleton<WeatherRepository>(WeatherRepositoryImpl(Dio(), kOpenWeatherKey));
 }

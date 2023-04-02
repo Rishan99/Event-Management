@@ -26,27 +26,6 @@ class Themes {
           minLeadingWidth: 0,
         ),
         appBarTheme: appBarTheme,
-        // textTheme: TextTheme(
-        //   titleMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        //   displayLarge: TextStyle(fontSize: 28, color: kColorHeading, fontWeight: FontWeight.bold),
-        //   displayMedium: TextStyle(fontSize: 18, color: kColorTextDark, fontWeight: FontWeight.w500),
-        //   displaySmall: TextStyle(fontSize: 14, color: kColorSubHeading, fontWeight: FontWeight.w400),
-        //   headlineMedium: TextStyle(
-        //     fontSize: 14,
-        //     color: kColorSubHeading,
-        //     height: 2.1,
-        //     fontWeight: FontWeight.w600,
-        //   ),
-        //   headlineSmall: TextStyle(
-        //     fontSize: 12,
-        //     color: kColorSecondary,
-        //     height: 2.1,
-        //     decoration: TextDecoration.underline,
-        //     fontWeight: FontWeight.w600,
-        //   ),
-        //   titleLarge: TextStyle(fontSize: 13,  fontWeight: FontWeight.w700),
-        //   bodyLarge: TextStyle(color: kColorHeading, fontSize: 15, fontWeight: FontWeight.w600),
-        // ),
         chipTheme: const ChipThemeData(
           deleteIconColor: Colors.black,
           labelStyle: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w400),
@@ -62,6 +41,7 @@ class Themes {
   static boderStyle({Color? color}) => OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
+          style: color == null ? BorderStyle.none : BorderStyle.solid,
           color: color ?? AppColors.secondaryColor,
         ),
       );

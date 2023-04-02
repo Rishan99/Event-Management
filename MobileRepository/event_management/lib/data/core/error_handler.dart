@@ -8,29 +8,29 @@ class ErrorHandler {
       DioError error = errors;
       switch (error.type) {
         case DioErrorType.connectionTimeout:
-          throw Exception('Connection Timeout');
+          throw AppException(message: 'Connection Timeout');
         case DioErrorType.sendTimeout:
-          throw Exception('Request Timeout');
+          throw AppException(message: 'Request Timeout');
         case DioErrorType.receiveTimeout:
-          throw Exception('Response Timeout');
+          throw AppException(message: 'Response Timeout');
         case DioErrorType.badResponse:
           if (error.response!.statusCode == 401) {
             throw SessionExpiredException(message: "Session has expired");
           } else {
-            throw Exception(error.response!.data ?? "Error, Please try again");
+            throw AppException(message: error.response!.data?.toString() ?? "Error, Please try again");
           }
         case DioErrorType.cancel:
-          throw Exception('Connection was canceled');
+          throw AppException(message: 'Connection was canceled');
         case DioErrorType.connectionError:
           if ((error.message ?? '').toLowerCase().contains('socketexception')) {
             throw NoInternetException(message: "No internet connection or server offline");
           } else {
-            throw Exception(error.message.toString());
+            throw AppException(message: error.message.toString());
           }
         default:
-          throw Exception(error.message ?? '');
+          throw AppException(message: error.message ?? '');
       }
     }
-    throw Exception(errors.toString());
+    throw AppException(message: errors.toString());
   }
 }

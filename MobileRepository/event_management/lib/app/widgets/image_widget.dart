@@ -35,8 +35,12 @@ class ImageWidget extends StatelessWidget {
         ),
         loadingBuilder: (z, b, c) => c == null
             ? b
-            : const Center(
-                child: CircularProgressIndicator(),
+            : SizedBox(
+                height: height,
+                width: width,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
       );
     }

@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:event_management/core/api_url/api_url.dart';
+import 'package:event_management/core/utils/exception/exception.dart';
 import 'package:event_management/data/core/error_handler.dart';
 import 'package:event_management/model/weather_model.dart';
 import 'package:event_management/services/weather/weather_repository.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   final Dio _dio;
-
   final String apiKey;
-
   WeatherRepositoryImpl(this._dio, this.apiKey);
 
   @override
@@ -25,7 +24,13 @@ class WeatherRepositoryImpl implements WeatherRepository {
         throw Exception("Cannot find weather forecast for $cityName");
       }
       return response.data;
-      // return;
+    } on DioError catch (e) {
+      if (e.response?.data != null) {
+        throw AppException(message: (e.response!.data['message'] ?? e.response!.data['cod'] ?? ""));
+      } else {
+        ErrorHandler.handleDioError(e);
+      }
+      rethrow;
     } catch (e) {
       ErrorHandler.handleDioError(e);
       rethrow;

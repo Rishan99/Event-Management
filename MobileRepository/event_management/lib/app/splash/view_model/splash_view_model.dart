@@ -8,6 +8,7 @@ class SplashViewModel extends BaseViewModel {
   SplashViewModel(this._preferenceService);
 
   UserAuthenticationState checkForUserState() {
+    // return UserAuthenticationState.expired;
     if (_preferenceService.accessToken.isEmpty) return UserAuthenticationState.expired;
     return UserAuthenticationState.loggedIn;
   }

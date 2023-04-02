@@ -17,7 +17,7 @@ class ErrorHandler {
           if (error.response!.statusCode == 401) {
             throw SessionExpiredException(message: "Session has expired");
           } else {
-            throw error.response!.data;
+            throw Exception(error.response!.data ?? "Error, Please try again");
           }
         case DioErrorType.cancel:
           throw Exception('Connection was canceled');

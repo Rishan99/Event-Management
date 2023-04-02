@@ -24,17 +24,17 @@ class EventListView extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          formSeperatorBox(),
           Row(
             children: [
-              Expanded(
+              const Expanded(
                 child: Text(
                   "Events For You",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w500),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                 ),
               ),
               if (model.state == ViewState.idle)
                 IconButton(
+                  tooltip: 'Filter',
                   onPressed: () {
                     showFlexibleBottomSheet(
                         context,
@@ -50,6 +50,7 @@ class EventListView extends StatelessWidget {
                   icon: const Icon(
                     CommunityMaterialIcons.filter_outline,
                     color: Colors.black,
+                    size: 22,
                   ),
                 )
             ],

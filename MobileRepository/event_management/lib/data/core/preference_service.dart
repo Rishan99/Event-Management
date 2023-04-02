@@ -30,7 +30,16 @@ class PreferenceService {
     return _sharedPreferences!.getString("userName") ?? '';
   }
 
+  set lastSearchedCity(String value) {
+    _sharedPreferences!.setString("lastSearchedCity", value);
+  }
+
+  String get lastSearchedCity {
+    return _sharedPreferences!.getString("lastSearchedCity") ?? '';
+  }
+
   void clearSession() {
-    _sharedPreferences!.clear();
+    _sharedPreferences!.remove("accessToken");
+    _sharedPreferences!.remove("lastSearchedCity");
   }
 }

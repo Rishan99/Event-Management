@@ -11,19 +11,14 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future login(String username, String password) async {
     try {
-      await demoDelay();
-      if (username == 'test@gmail.com' && password == 'test123') {
-        return {'accessToken': "testToken"};
-      }
-      throw "Invalid Username or Password";
-      final Response response = await httpService.postRequestWithoutAuth(
+      final data = await httpService.postRequestWithoutAuth(
         ApiUrl.login,
         data: {
           'username': username,
           'password': password,
         },
       );
-      return response.data;
+      return data;
     } catch (e) {
       rethrow;
     }
@@ -32,20 +27,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<dynamic> register(String name, String username, String password) async {
     try {
-      await demoDelay();
-      if (username == 'test@gmail.com') {
-        throw "User with email ${username} has already been registered";
-      }
-      return "Success";
-      final Response response = await httpService.postRequestWithoutAuth(
-        ApiUrl.login,
+      final response = await httpService.postRequestWithoutAuth(
+        ApiUrl.register,
         data: {
           'username': username,
           'name': name,
           'password': password,
+          'confirmPassword': password,
         },
       );
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }

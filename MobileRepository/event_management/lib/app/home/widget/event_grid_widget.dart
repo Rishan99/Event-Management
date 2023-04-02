@@ -1,3 +1,4 @@
+import 'package:event_management/app/widgets/image_widget.dart';
 import 'package:event_management/core/constant/constant.dart';
 import 'package:event_management/core/route/route.dart';
 import 'package:event_management/core/theme/app_colors.dart';
@@ -35,20 +36,13 @@ class EventGridWidget extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  eventModel.coverImage ?? '',
-                  width: 120,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Image.asset(
-                    AppImage.error,
+                  borderRadius: BorderRadius.circular(12),
+                  child: ImageWidget(
+                    imageUrl: eventModel.coverImage,
+                    height: 100,
                     width: 120,
-                    height: 90,
                     fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+                  )),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Padding(
@@ -69,7 +63,11 @@ class EventGridWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(DateFormat("dd MMM, yyyy (EE)").format(DateTime.parse(eventModel.startDate))),
-                        Text(eventModel.ticketType.name),
+                        Text(
+                          "Price : Rs.${eventModel.ticketPrice}",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ],
                     ),
                   )

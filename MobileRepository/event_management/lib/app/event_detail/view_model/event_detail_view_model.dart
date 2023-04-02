@@ -29,5 +29,8 @@ class EventDetailViewModel extends BaseViewModel {
     }
   }
 
-  bool get allowBooking => eventModel == null ? false : eventModel?.booking == null;
+  Future<void> pucrhaseTicket() async {
+    await _eventService.purchaseTicket(id);
+    await getEventDetail();
+  }
 }

@@ -16,4 +16,9 @@ class EventService {
     final dynamic data = await eventRepository.getEventDetails(id);
     return EventDetailModel.fromMap(data);
   }
+
+  Future<String> purchaseTicket(int id) async {
+    final dynamic data = await eventRepository.buyTicket(id);
+    return data.toString();
+  }
 }

@@ -31,7 +31,7 @@ class DateSelector extends StatelessWidget {
         GestureDetector(
           onTap: () async {
             FocusScope.of(context).requestFocus(FocusNode());
-            await showMaterialADDatePicker(context);
+            await showMaterialDatePicker(context);
           },
           child: InputDecorator(
             decoration: const InputDecoration(
@@ -42,9 +42,6 @@ class DateSelector extends StatelessWidget {
               title: Text(
                 selectedDateTime == null ? "" : DateFormat("dd MMM, yyyy (EE)").format(selectedDateTime!),
                 textAlign: TextAlign.left,
-                // style: ((_selectedDateTime == null && (canBeNull)) || popid == null)
-                //     ? Theme.of(context).textTheme.caption
-                //     : TextStyle(color: ((_selectedDateTime == null && (canBeNull)) || popid == null) ? Theme.of(context).inputDecorationTheme.hintStyle!.color : null),
               ),
               trailing: const Icon(
                 Icons.event,
@@ -56,7 +53,7 @@ class DateSelector extends StatelessWidget {
     );
   }
 
-  showMaterialADDatePicker(BuildContext context) async {
+  showMaterialDatePicker(BuildContext context) async {
     final _selectedDateTime = (selectedDateTime ?? DateTime.now());
 
     final _firstDate = (initialDate ?? DateTime(2022));
@@ -65,7 +62,7 @@ class DateSelector extends StatelessWidget {
     final DateTime? date = await showDatePicker(
       context: context,
       builder: (context, child) {
-        return Theme(data: Themes().theme(), child: child!);
+        return Theme(data: Themes().theme().copyWith(textButtonTheme: TextButtonThemeData()), child: child!);
       },
       initialDate: _selectedDateTime.isBefore(_lastDate)
           ? _selectedDateTime.isAfter(_firstDate)

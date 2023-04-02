@@ -11,10 +11,10 @@ class EventRepositoryImpl implements EventRepository {
   @override
   Future<dynamic> getEventDetails(int id) async {
     try {
-      await demoDelay();
-      return eventModel(id).toMap();
-      final Response response = await httpService.getData(ApiUrl.eventDetail(id));
-      return response.data as List<dynamic>;
+      // await demoDelay();
+      // return eventModel(id).toMap();
+      final data = await httpService.getData(ApiUrl.eventDetail(id));
+      return data as dynamic;
     } catch (e) {
       rethrow;
     }
@@ -23,12 +23,24 @@ class EventRepositoryImpl implements EventRepository {
   @override
   Future<List<dynamic>> getEvents(String? city) async {
     try {
-      await demoDelay();
-      return events.map((e) => e.toMap()).toList();
-      final Response response = await httpService.getData(ApiUrl.eventList, data: {
+      // await demoDelay();
+      // return events.map((e) => e.toMap()).toList();
+      final data = await httpService.getData(ApiUrl.eventList, data: {
         'city': city,
       });
-      return response.data;
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<dynamic> buyTicket(int eventId) async {
+    try {
+      // await demoDelay();
+      // return events.map((e) => e.toMap()).toList();
+      final data = await httpService.postDataJson(ApiUrl.purchaseTicket(eventId), data: {});
+      return data;
     } catch (e) {
       rethrow;
     }

@@ -4,6 +4,7 @@ import 'package:event_management/app/widgets/error_widget.dart';
 import 'package:event_management/app/widgets/image_slider.dart';
 import 'package:event_management/app/widgets/loading_widget.dart';
 import 'package:event_management/core/constant/app_images.dart';
+import 'package:event_management/core/theme/app_colors.dart';
 import 'package:event_management/core/utils/utils.dart';
 import 'package:event_management/model/event_detail_model.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:event_management/app/core/baseView.dart';
 import 'package:event_management/app/event_detail/view_model/event_detail_view_model.dart';
 import 'package:event_management/core/utils/ui_helper.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class EventDetailView extends StatelessWidget {
   final int id;
@@ -29,29 +31,72 @@ class EventDetailView extends StatelessWidget {
       },
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(),
-        bottomNavigationBar: model.eventModel != null && model.allowBooking
+        bottomNavigationBar: model.eventModel != null
             ? Material(
                 color: Colors.white,
                 elevation: 10,
-                // shadowColor: Colors.black,
                 child: Padding(
                   padding: pageSidePadding.copyWith(top: 10, bottom: 10),
                   child: Row(children: [
                     Expanded(
                       child: Text(
                         'Price: Rs.${model.eventModel?.ticketPrice}',
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    TextButton(
-                      style: ButtonStyle(minimumSize: MaterialStateProperty.resolveWith((states) => Size(150, 46))),
-                      onPressed: () {
-                        //
-                      },
-                      child: const Text("Buy Ticket"),
-                    )
+                    Builder(builder: (context) {
+                      if (model.eventModel!.allowBooking) {
+                        return TextButton(
+                          style: ButtonStyle(minimumSize: MaterialStateProperty.resolveWith((states) => Size(150, 46))),
+                          onPressed: () async {
+                            ProgressDialog pr = ProgressDialog(context);
+                            await pr.show();
+                            try {
+                              await model.pucrhaseTicket();
+                              await pr.hide();
+                            } catch (e) {
+                              await pr.hide();
+                              failureSnackBar(e.toString());
+                            }
+                            //
+                          },
+                          child: const Text("Buy Ticket"),
+                        );
+                      } else if (model.eventModel!.ticketStatusId == null) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Text("Booking time has expired",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.rejectedColor,
+                              )),
+                        );
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black),
+                              children: [
+                                const TextSpan(text: "Ticket Status: "),
+                                TextSpan(
+                                    text: model.eventModel!.ticketStatus ?? "",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: model.eventModel!.ticketStatusId == 1
+                                            ? AppColors.pendingColor
+                                            : model.eventModel!.ticketStatusId == 2
+                                                ? AppColors.approvedColor
+                                                : AppColors.rejectedColor)),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                    })
                   ]),
                 ),
               )
@@ -124,11 +169,9 @@ class EventDetailView extends StatelessWidget {
                     ),
                     Text(
                       "Ticket Type : ${eventDetailModel.ticketType.name}",
-                      // style: Theme.of(context).textTheme.titleMedium,
                     ),
                     Text(
                       "Price : Rs. ${eventDetailModel.ticketPrice}",
-                      // style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
                 ),
@@ -148,14 +191,14 @@ class EventDetailView extends StatelessWidget {
                         Expanded(
                           child: DateWidget(
                             title: "Start Date",
-                            content: eventDetailModel.startDate,
+                            content: (eventDetailModel.startDate).split('T').first,
                           ),
                         ),
                         if (eventDetailModel.endDate != null)
                           Expanded(
                             child: DateWidget(
                               title: "End Date",
-                              content: eventDetailModel.endDate ?? '',
+                              content: (eventDetailModel.endDate ?? '').split('T').first,
                             ),
                           ),
                       ],
@@ -172,12 +215,12 @@ class EventDetailView extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 5,
                       ),
                       Text(
                         eventDetailModel.description ?? '',
-                        style: Theme.of(context).textTheme.titleMedium,
                       ),
+                      formSeperatorBox(),
                     ],
                   )
               ],

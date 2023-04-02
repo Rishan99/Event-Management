@@ -1,4 +1,5 @@
 import 'package:event_management/core/theme/themes.dart';
+import 'package:event_management/data/core/preference_service.dart';
 import 'package:event_management/services/provider/city_provider.dart';
 import 'package:event_management/services/weather/weather_service.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => CityProvider(locator<WeatherService>()),
+      create: (context) => CityProvider(locator<WeatherService>(), locator<PreferenceService>()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         builder: (newContext, child) {

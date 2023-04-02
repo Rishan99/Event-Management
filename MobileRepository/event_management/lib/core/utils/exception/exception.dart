@@ -1,6 +1,6 @@
-class _AppException implements Exception {
+class AppException implements Exception {
   final String? message;
-  _AppException({this.message});
+  AppException({this.message});
 
   @override
   String toString() {
@@ -8,14 +8,14 @@ class _AppException implements Exception {
   }
 }
 
-class NoInternetException extends _AppException {
+class NoInternetException extends AppException {
   NoInternetException({super.message});
 }
 
-class SessionExpiredException extends _AppException {
+class SessionExpiredException extends AppException {
   SessionExpiredException({super.message});
 }
 
-class ForbiddenException extends _AppException {
+class ForbiddenException extends AppException {
   ForbiddenException({super.message});
 }

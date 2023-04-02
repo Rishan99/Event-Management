@@ -22,8 +22,12 @@ class AppColors {
   static final Color hintColor = Colors.grey.shade600;
   static const Color dividerColor = Colors.grey;
   static const Color widgetBorderColor = Color.fromARGB(255, 204, 203, 203);
-  static final errorColor = Colors.red[800]!;
-  static final greenColor = Colors.green[600]!;
+  static final Color errorColor = Colors.red[800]!;
+  static final Color greenColor = Colors.green[600]!;
+
+  static final Color rejectedColor = Colors.red[800]!;
+  static final Color approvedColor = Colors.green[600]!;
+  static final Color pendingColor = Colors.orange[600]!;
   static const Color kColorBackground = Colors.white;
   static const Color fillColor = Color(0xfffefefe);
   static const Color buttonColor = primaryColor;

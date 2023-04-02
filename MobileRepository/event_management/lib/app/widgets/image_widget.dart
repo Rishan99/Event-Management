@@ -31,7 +31,7 @@ class ImageWidget extends StatelessWidget {
           AppImage.placeHolder,
           height: height,
           width: width,
-          fit: fit ?? BoxFit.contain,
+          fit: fit ?? BoxFit.cover,
         ),
         loadingBuilder: (z, b, c) => c == null
             ? b

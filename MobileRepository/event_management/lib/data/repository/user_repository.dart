@@ -14,10 +14,10 @@ class UserRepositoryImpl implements UserRepository {
     try {
       await demoDelay();
       return UserModel(createdDate: DateTime.now().toIso8601String(), id: "1", name: 'Test', username: 'test@gmail.com').toMap();
-      final Response response = await httpService.getData(
+      final data = await httpService.getData(
         ApiUrl.profileDetail,
       );
-      return response.data;
+      return data;
     } catch (e) {
       rethrow;
     }

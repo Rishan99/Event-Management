@@ -25,6 +25,8 @@ List<EventModel> events = List.generate(
 
 EventDetailModel eventModel(int i) => EventDetailModel(
       booking: null,
+      allowBooking: true,
+      ticketStatus: '',
       coverImage: null,
       endDate: DateTime.now().toIso8601String(),
       images: [
